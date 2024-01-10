@@ -1,49 +1,59 @@
 package clients.cashier;
 
-
 /**
  * The Cashier Controller
  * @author M A Smith (c) June 2014
  */
 
-public class CashierController
-{
+public class CashierController {
   private CashierModel model = null;
-  private CashierView  view  = null;
+  private CashierView view = null;
 
   /**
    * Constructor
-   * @param model The model 
+   *
+   * @param model The model
    * @param view  The view from which the interaction came
    */
-  public CashierController( CashierModel model, CashierView view )
-  {
-    this.view  = view;
+  public CashierController(CashierModel model, CashierView view) {
+    this.view = view;
     this.model = model;
   }
 
   /**
    * Check interaction from view
+   *
    * @param pn The product number to be checked
    */
-  public void doCheck( String pn )
-  {
+  public void doCheck(String pn) {
     model.doCheck(pn);
   }
 
-   /**
+  /**
    * Buy interaction from view
    */
-  public void doBuy()
-  {
+  public void doBuy() {
     model.doBuy();
   }
-  
-   /**
+
+  public void doBuyFive() {
+    model.doBuyFive();
+  }
+
+  public void doRemove() {
+    model.doRemove();
+  }
+  /**
    * Bought interaction from view
    */
-  public void doBought()
-  {
+  public void doBought() {
     model.doBought();
   }
 }
+
+
+
+  /**
+   * Choose quantity interaction from view
+   */
+

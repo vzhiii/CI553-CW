@@ -23,6 +23,10 @@ public class CashierView implements Observer
   private static final String CHECK  = "Check";
   private static final String BUY    = "Buy";
   private static final String BOUGHT = "Bought";
+  private static final String BUY5    = "Buy 5";
+
+
+
 
   private final JLabel      theAction  = new JLabel();
   private final JTextField  theInput   = new JTextField();
@@ -31,6 +35,10 @@ public class CashierView implements Observer
   private final JButton     theBtCheck = new JButton( CHECK );
   private final JButton     theBtBuy   = new JButton( BUY );
   private final JButton     theBtBought= new JButton( BOUGHT );
+  private final JButton     theBtBuy5   = new JButton( BUY5 );
+  private final JButton removeButton = new JButton("Remove");
+
+
 
   private StockReadWriter theStock     = null;
   private OrderProcessing theOrder     = null;
@@ -72,10 +80,20 @@ public class CashierView implements Observer
       e -> cont.doBuy() );
     cp.add( theBtBuy );                             //  Add to canvas
 
+    theBtBuy5.setBounds( 16, 25+60*2, 80, 40 );      // Buy button
+    theBtBuy5.addActionListener(                     // Call back code
+            e -> cont.doBuyFive() );
+    cp.add( theBtBuy5 );                             //  Add to canvas
+
     theBtBought.setBounds( 16, 25+60*3, 80, 40 );   // Clear Button
     theBtBought.addActionListener(                  // Call back code
       e -> cont.doBought() );
     cp.add( theBtBought );                          //  Add to canvas
+
+    removeButton.setBounds( 16, 25+60*4, 80, 40 );   // Clear Button
+    removeButton.addActionListener(                  // Call back code
+            e -> cont.doRemove() );
+    cp.add( removeButton );
 
     theAction.setBounds( 110, 25 , 270, 20 );       // Message area
     theAction.setText( "" );                        // Blank
@@ -92,6 +110,10 @@ public class CashierView implements Observer
     theSP.getViewport().add( theOutput );           //  In TextArea
     rootWindow.setVisible( true );                  // Make visible
     theInput.requestFocus();                        // Focus is here
+
+
+
+
   }
 
   /**

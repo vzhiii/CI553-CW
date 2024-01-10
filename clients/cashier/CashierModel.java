@@ -130,7 +130,57 @@ public class CashierModel extends Observable
     theState = State.process;                   // All Done
     setChanged(); notifyObservers(theAction);
   }
-  
+
+  public void doRemove() {
+    String actionMessage = "";
+    try {
+      if (theBasket != null && theBasket.size() > 0) {
+        theBasket.removeLast();
+        actionMessage = "Removed the last item from the basket";
+      } else {
+        actionMessage = "Basket is empty";
+      }
+    } catch (Exception e) {
+      DEBUG.error("CashierModel.doRemove\n%s", e.getMessage());
+      actionMessage = e.getMessage();
+    }
+
+    setChanged();
+    notifyObservers(actionMessage);
+  }
+
+  public void doBuyFive()
+  {
+    String theAction = "";
+    int amount = 5;
+    try
+    {
+      if (theState != State.checked)
+      {
+        theAction = "Check if OK with customer first";
+      } else {
+        boolean stockBought = theStock.buyStock(theProduct.getProductNum(), amount);
+        if (stockBought) // Stock bought
+        {
+          makeBasketIfReq();
+          theProduct.setQuantity(amount); // Set quantity to 5
+          theBasket.add(theProduct); // Add to basket
+          theAction = "Purchased 5 of " + theProduct.getDescription();
+        } else {
+          theAction = "!!! Not enough stock";
+        }
+      }
+    } catch( StockException e )
+    {
+      DEBUG.error( "%s\n%s",
+              "CashierModel.doBuy", e.getMessage() );
+      theAction = e.getMessage();
+    }
+    theState = State.process;                   // All Done
+    setChanged(); notifyObservers(theAction);
+  }
+
+
   /**
    * Customer pays for the contents of the basket
    */
