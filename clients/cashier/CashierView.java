@@ -17,7 +17,7 @@ import java.util.Observer;
  */
 public class CashierView implements Observer
 {
-  private static final int H = 300;       // Height of window pixels
+  private static final int H = 350;       // Height of window pixels
   private static final int W = 400;       // Width  of window pixels
   
   private static final String CHECK  = "Check";

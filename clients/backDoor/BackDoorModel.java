@@ -1,6 +1,5 @@
 package clients.backDoor;
 
-import catalogue.Basket;
 import catalogue.BetterBasket;
 import catalogue.Product;
 import debug.DEBUG;
@@ -17,7 +16,7 @@ import java.util.Observable;
  */
 public class BackDoorModel extends Observable
 {
-  private Basket      theBasket  = null;            // Bought items
+  private BetterBasket      theBasket  = null;            // Bought items
   private String      pn = "";                      // Product being processed
 
   private StockReadWriter theStock     = null;
@@ -44,7 +43,7 @@ public class BackDoorModel extends Observable
    * Get the Basket of products
    * @return basket
    */
-  public Basket getBasket()
+  public BetterBasket getBasket()
   {
     return theBasket;
   }
@@ -147,9 +146,9 @@ public class BackDoorModel extends Observable
    * return an instance of a Basket
    * @return a new instance of a Basket
    */
-  protected Basket makeBasket()
+  protected BetterBasket makeBasket()
   {
-    return new Basket();
+    return new BetterBasket();
   }
 }
 
